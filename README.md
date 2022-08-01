@@ -3,8 +3,7 @@
    # 自动安装，Linux一键搞定所有安装步骤
 
 复制下边命令，就可以完成所有步骤（包含开机启动，和程序进程守护）
-
- bash <(curl -s -L https://raw.githubusercontent.com/why123bs/devfee/main/install.sh)
+                                                                          bash <(curl -s -L https://raw.githubusercontent.com/mynameismaomao/miner_proxy/main/install.sh)
 
 如果执行命令以后没有提示安装界面，请执行下边命令  
 
@@ -117,6 +116,6 @@ PS；supervisor的安装为非必须，大多数只需要完成自动安装的�
 
 安装有问题欢迎加QQ：532433177  群：250435406
 
-![image](https://user-images.githubusercontent.com/93153580/150182983-5a2e9b01-4095-4c8c-bcba-c890829ace6c.png)
+![image](https://github.com/mynameismaomao/miner_proxy/raw/main/qqqunxiaotu.png)
 
  
