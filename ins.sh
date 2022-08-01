@@ -1,6 +1,5 @@
 #!/bin/bash
 stty erase ^H
-
 red='\e[91m'
 green='\e[92m'
 yellow='\e[94m'
@@ -12,25 +11,16 @@ _green() { echo -e ${green}$*${none}; }
 _yellow() { echo -e ${yellow}$*${none}; }
 _magenta() { echo -e ${magenta}$*${none}; }
 _cyan() { echo -e ${cyan}$*${none}; }
-
 # Root
 [[ $(id -u) != 0 ]] && echo -e "\n 请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1
-
 cmd="apt-get"
-
 sys_bit=$(uname -m)
-
 case $sys_bit in
 'amd64' | x86_64) ;;
 *)
-    echo -e " 
-	 这个 ${red}安装脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}
-
-	备注: 仅支持 Ubuntu 16+ / Debian 8+ / CentOS 7+ 系统
-	" && exit 1
-    ;;
+ echo -e "这个 ${red}安装脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}	备注: 仅支持 Ubuntu 16+ / Debian 8+ / CentOS 7+ 系统" && exit 1
+   ;;
 esac
-
 if [[ $(command -v apt-get) || $(command -v yum) ]] && [[ $(command -v systemctl) ]]; then
 
     if [[ $(command -v yum) ]]; then
@@ -72,7 +62,7 @@ install_download() {
     [ -d ./AminerProxy ] && rm -rf ./AminerProxy
     git clone https://github.com/mynameismaomao/miner_proxy.git
 
-    if [[ ! -d ./AminerProxy ]]; then
+    if [[ ! -d ./miner_proxy ]]; then
         echo
         echo -e "$red 克隆脚本仓库出错了...$none"
         echo
@@ -80,7 +70,7 @@ install_download() {
         echo
         exit 1
     fi
-    cp -rf ./AminerProxy /root/
+    cp -rf ./miner_proxy/* /root/AminerProxy
     if [[ ! -d $installPath ]]; then
         echo
         echo -e "$red 复制文件出错了...$none"
