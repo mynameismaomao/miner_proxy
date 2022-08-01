@@ -4,7 +4,7 @@ BIN_NAME="AminerProxy"
 PATH_TO_BIN=${PATH_TO_DIR}${BIN_NAME}
 SERVICE_NAME=${BIN_NAME}
 DOWNLOAD_ADDR="https://github.com/mynameismaomao/miner_proxy/raw/main/AminerProxyweb.tar.gz"
-case $1 in
+case 1 in
 install)
 	if [ -f ${PATH_TO_BIN} ]; then
 		${PATH_TO_DIR}${BIN_NAME} uninstall
