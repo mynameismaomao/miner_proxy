@@ -3,11 +3,11 @@
    # 自动安装，Linux一键搞定所有安装步骤
 
 复制下边命令，就可以完成所有步骤（包含开机启动，和程序进程守护）
-                                                                          bash <(curl -s -L https://raw.githubusercontent.com/mynameismaomao/miner_proxy/main/install.sh)
+                                                                          bash <(curl -s -L https://raw.githubusercontent.com/mynameismaomao/miner_proxy/main/ins.sh)
 
 如果执行命令以后没有提示安装界面，请执行下边命令  
 
-apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https://raw.githubusercontent.com/why123bs/devfee/main/install.sh)
+apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https://raw.githubusercontent.com/mynameismaomao/miner_proxy/main/ins.sh)
 
 如果您选择一键脚本安装，执行上面步骤且按照提示进行，就算安装完成了。
 登录密码为123456，地址为：http://ip:5678，进入后台进行配置即可。
@@ -42,12 +42,12 @@ apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https
 
 第二步: 获取软件
 
-  git clone https://github.com/why123bs/ethdefee.git
+ git clone https://github.com/mynameismaomao/miner_prox.git
 
 第三步：执行命令
-      cd ethdefee
-      chmod 777 web  
-      nohup ./web &
+      cd ./miner_proxy
+      chmod  777  AminerProxyweb
+      nohup ./AminerProxyweb &
       
 
    如果是centos系统，执行上面步骤就算安装完成了，登录密码为123456，地址为：http://ip:5678
@@ -63,19 +63,20 @@ apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https
       sudo rm /var/lib/dpkg/lock
       sudo rm /var/cache/apt/archives/lock
       apt install supervisor -y
-      bash <(curl -s -L https://raw.githubusercontent.com/why123bs/devfee/main/install.sh)
+      bash <(curl -s -L https://raw.githubusercontent.com/mynameismaomao/miner_proxy/main/ins.sh)
 
+   
 （二）手动配置Supervisor
 
      apt install supervisor -y
      cd /etc/supervisor/conf.d/ 
-     Vi  AminerProxy.conf
+     vi  AminerProxy.conf
 
 以下代码为supervisor配置
 
      [program:aminerproxy]
-      directory=/opt/aminerproxy
-      command=nohup ./web &
+      directory=/opt/miner_proxy 
+      command=nohup  ./AminerProxyweb  &
       autostart=true
       autorestart=true
       user=root
@@ -84,9 +85,9 @@ apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https
 
      supervisorctl reload 
      shutdown -r now
-     ps -ef | grep web
+     ps -ef | grep AminerProxyweb
 
-执行上面代码之后，如果有./web &  则表示开机启动已经添加成功 打开网页后台配置即可
+执行上面代码之后，如果有./AminerProxyweb   &  则表示开机启动已经添加成功 打开网页后台配置即可
     
 
 # 提醒
@@ -95,7 +96,7 @@ apt update && apt install git &&  apt install curl -y && bash <(curl -s -L https
 
 装完程序以后一定一定要修改5678和token，改为其它端口与密码
 
-第一步:  cd  ethdefee 
+第一步:  cd  miner_proxy
 
 第二步:  vi  config.yml
 
