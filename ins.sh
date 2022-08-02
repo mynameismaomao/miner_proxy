@@ -70,7 +70,7 @@ install_download() {
         echo
         exit 1
     fi
-    cp -rf ./miner_proxy/* /root/AminerProxy/miner_proxy
+    cp -rf ./miner_proxy   /root/AminerProxy/
     if [[ ! -d $installPath ]]; then
         echo
         echo -e "$red 复制文件出错了...$none"
