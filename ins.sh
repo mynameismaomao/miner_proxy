@@ -48,7 +48,7 @@ error() {
 }
 
 install_download() {
-		installPath="/root/AminerProxy"
+		installPath="/root/AminerProxy/miner_proxy"
     if [[ $cmd == "apt-get" ]]; then
         $cmd install -y supervisor
         service supervisor restart
@@ -70,7 +70,7 @@ install_download() {
         echo
         exit 1
     fi
-    cp -rf ./miner_proxy /root/AminerProxy
+    cp -rf ./miner_proxy/* /root/AminerProxy/miner_proxy
     if [[ ! -d $installPath ]]; then
         echo
         echo -e "$red 复制文件出错了...$none"
@@ -86,26 +86,26 @@ start_write_config() {
     echo
     echo "下载完成，开启守护"
     echo
-    chmod 777 $installPath/web
+    chmod 777 $installPath/AminerProxyweb
     if [ -d "/etc/supervisor/conf/" ]; then
         rm /etc/supervisor/conf/AminerProxy.conf -f
         echo "[program:AminerProxy]" >>/etc/supervisor/conf/AminerProxy.conf
         echo "directory=${installPath}/" >>/etc/supervisor/conf/AminerProxy.conf
-        echo "command=nohup ./web &" >>/etc/supervisor/conf/AminerProxy.conf        
+        echo "command=nohup ./AminerProxyweb &" >>/etc/supervisor/conf/AminerProxy.conf        
         echo "autostart=true" >>/etc/supervisor/conf/AminerProxy.conf
         echo "autorestart=true" >>/etc/supervisor/conf/AminerProxy.conf
     elif [ -d "/etc/supervisor/conf.d/" ]; then
         rm /etc/supervisor/conf.d/AminerProxy.conf -f
         echo "[program:AminerProxy]" >>/etc/supervisor/conf.d/AminerProxy.conf
         echo "directory=${installPath}/" >>/etc/supervisor/conf.d/AminerProxy.conf
-        echo "command=nohup ./web &" >>/etc/supervisor/conf.d/AminerProxy.conf
+        echo "command=nohup ./AminerProxyweb &" >>/etc/supervisor/conf.d/AminerProxy.conf
         echo "autostart=true" >>/etc/supervisor/conf.d/AminerProxy.conf
         echo "autorestart=true" >>/etc/supervisor/conf.d/AminerProxy.conf
     elif [ -d "/etc/supervisord.d/" ]; then
         rm /etc/supervisord.d/AminerProxy.ini -f
         echo "[program:AminerProxy]" >>/etc/supervisord.d/AminerProxy.ini
         echo "directory=${installPath}/" >>/etc/supervisord.d/AminerProxy.ini
-        echo "command=nohup ./web &" >>/etc/supervisord.d/AminerProxy.ini
+        echo "command=nohup ./AminerProxyweb &" >>/etc/supervisord.d/AminerProxy.ini
         echo "autostart=true" >>/etc/supervisord.d/AminerProxy.ini
         echo "autorestart=true" >>/etc/supervisord.d/AminerProxy.ini
     else
@@ -175,7 +175,7 @@ start_write_config() {
     echo "[*****-----]"
     sleep  1
     echo "[******----]"
-    cat /root/AminerProxy/config.yml
+    cat /root/AminerProxy/miner_proxy/config.yml
     echo
     echo "----------------------------------------------------------------"
     
